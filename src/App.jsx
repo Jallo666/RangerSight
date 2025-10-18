@@ -4,6 +4,7 @@ import { selectIsLogged } from "./store/slices/session/sessionSelectors";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "./store/slices/session/sessionSlice";
+import LogoutButton from "./shared/components/LogoutButton.jsx";
 
 export default function App() {
   const isLogged = useSelector(selectIsLogged);
@@ -20,7 +21,10 @@ export default function App() {
   return (
     <div>
       {isLogged ? (
-        <h1>SEI LOGGATO BRAVO</h1>
+        <div>
+          <LogoutButton>LogOut</LogoutButton>
+          <LogoutButton minimized={true}></LogoutButton>
+        </div>
       ) : (
         <Login />
       )}
