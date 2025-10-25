@@ -1,61 +1,30 @@
-import { useState } from "react";
-import { login } from "../store/slices/session/sessionSlice";
-import { useDispatch } from "react-redux";
-import { authenticate } from "./services/authService";
+import { Box } from "@mui/material";
+import LoginCard from "./LoginCard";
+import ThemeToggleButton from "../shared/components/ThemeToggleButton";
+import "./loginBackground.css";
 
-export default function Login() {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [stayLogged, setStayLogged] = useState(false);
-    const dispatch = useDispatch();
+export default function Login({ darkMode, setDarkMode }) {
+  return (
+    <Box
+      className="login-background"
+      position="relative"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="100vh"
+      color="text.primary"
+    >
+      <Box position="absolute" top={16} right={16} zIndex={2}>
+        <ThemeToggleButton darkMode={darkMode} setDarkMode={setDarkMode} />
+      </Box>
 
-    const onLogin = async () => {
-        try {
-            const loginResponse = await authenticate(username, password);
-            dispatch(login(loginResponse.username, stayLogged));
-            if (stayLogged) {
-                localStorage.setItem(
-                    "session",
-                    JSON.stringify({ token: loginResponse.token, username: loginResponse.username })
-                );
-            }
-        } catch (error) {
-            alert(error.message);
-        }
-    };
+      <Box zIndex={2}>
+        <LoginCard />
+      </Box>
 
-    return (
-        <div>
-            <h1>Login</h1>
-
-            <label>Username</label>
-            <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
-
-            <label>Password</label>
-            <input
-                type="text"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-
-            <br />
-
-            <label>
-                <input
-                    type="checkbox"
-                    checked={stayLogged}
-                    onChange={(e) => setStayLogged(e.target.checked)}
-                />{" "}
-                Rimani Connesso
-            </label>
-
-            <br />
-
-            <button onClick={onLogin}>Login</button>
-        </div>
-    );
+      <div className="wave"></div>
+      <div className="wave"></div>
+      <div className="wave"></div>
+    </Box>
+  );
 }
