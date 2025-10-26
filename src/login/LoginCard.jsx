@@ -30,8 +30,11 @@ export default function LoginCard() {
     setLoading(true);
     try {
       const loginResponse = await authenticate(username, password);
-      dispatch(login(loginResponse.username, stayLogged));
-
+      console.log("Login successful:", loginResponse.username);
+      dispatch(login({
+        username: loginResponse.username,
+        stayLogged: stayLogged
+      }));
       if (stayLogged) {
         localStorage.setItem(
           "session",

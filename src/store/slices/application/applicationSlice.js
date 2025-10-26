@@ -1,17 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { setThemeAction } from './applicationActions';
-
+import { setDockPositionAction } from './applicationActions';
 const initialState = {
   theme: "light",
+  dock: {
+    position: "top",
+  },
 };
 
 const applicationSlice = createSlice({
   name: "application",
   initialState,
   reducers: {
-    setTheme: setThemeAction
+    setTheme: setThemeAction,
+    setDockPosition: setDockPositionAction,
   },
 });
 
-export const { setTheme } = applicationSlice.actions;
+export const { setTheme, setDockPosition } = applicationSlice.actions;
 export default applicationSlice.reducer;

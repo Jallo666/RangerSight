@@ -9,7 +9,6 @@ function generateToken(length = 16) {
 
 export function authenticate(username, password) {
     return new Promise((resolve, reject) => {
-        // Simulate an API call with a timeout
         setTimeout(() => {
             if (username === "admin" && password === "password") {
                 resolve({username: "admin", token: generateToken(16) });

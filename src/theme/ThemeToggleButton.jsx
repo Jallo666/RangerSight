@@ -1,8 +1,8 @@
 import { IconButton } from "@mui/material";
 import { Brightness4, Brightness7 } from "@mui/icons-material";
 import { useSelector, useDispatch } from "react-redux";
-import { selectTheme } from "../../store/slices/application/applicationSelectors";
-import { setTheme } from "../../store/slices/application/applicationSlice";
+import { selectTheme } from "../store/slices/application/applicationSelectors";
+import { setTheme } from "../store/slices/application/applicationSlice";
 
 export default function ThemeToggleButton({ ...props }) {
   const currentTheme = useSelector(selectTheme);

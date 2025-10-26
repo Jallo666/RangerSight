@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import LoginCard from "./LoginCard";
-import ThemeToggleButton from "../shared/components/ThemeToggleButton";
+import ThemeToggleButton from "../theme/ThemeToggleButton";
 import "./loginBackground.css";
 
 export default function Login({ darkMode, setDarkMode }) {
