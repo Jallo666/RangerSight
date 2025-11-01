@@ -12,9 +12,8 @@ import {
   Typography,
   Box,
 } from "@mui/material";
-import { LoadingButton } from "@mui/lab";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-
+import { Button } from "@mui/material";
 import logo from "../assets/logo.svg";
 
 export default function LoginCard() {
@@ -30,7 +29,6 @@ export default function LoginCard() {
     setLoading(true);
     try {
       const loginResponse = await authenticate(username, password);
-      console.log("Login successful:", loginResponse.username);
       dispatch(login({
         username: loginResponse.username,
         stayLogged: stayLogged
@@ -116,7 +114,7 @@ export default function LoginCard() {
           />
         </Box>
 
-        <LoadingButton
+        <Button 
           type="submit"
           variant="contained"
           color="primary"
@@ -125,7 +123,7 @@ export default function LoginCard() {
           sx={{ mt: 2 }}
         >
           Login
-        </LoadingButton>
+        </Button >
       </form>
     </Paper>
 

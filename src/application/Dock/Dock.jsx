@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Paper } from "@mui/material";
-import HomeIcon from "@mui/icons-material/Home";
 import MapIcon from "@mui/icons-material/Map";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import GridView from "@mui/icons-material/GridView";
 import logo from "../../assets/logo.svg";
 import DockIcon from "./DockIcon";
 import DockSettings from "./DockSettings";
@@ -12,6 +12,7 @@ import { selectDockPosition } from "../../store/slices/application/applicationSe
 
 export default function Dock() {
   const currentDockPosition = useSelector(selectDockPosition);
+
 
   return (
     <Paper
@@ -32,9 +33,9 @@ export default function Dock() {
       }}
     >
       <Box display="flex" gap={1}>
-        <DockIcon icon={HomeIcon} label="Home" />
-        <DockIcon icon={MapIcon} label="Mappa" />
-        <DockIcon icon={DashboardIcon} label="Dashboard" />
+        <DockIcon navigation={true} icon={GridView} label="Campi" />
+        <DockIcon navigation={true} icon={MapIcon} label="Mappa" />
+        <DockIcon navigation={true} icon={DashboardIcon} label="Dashboard" />
       </Box>
 
       <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>

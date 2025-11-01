@@ -1,0 +1,216 @@
+[
+    {
+        "id_campo": 1,
+        "id_azienda": 1,
+        "nome_campo": "Campo Nord",
+        "tipo_attività": "agricoltura",
+        "dimensione_ha": 5,
+        "tipo_suolo": "argilloso",
+        "coordinate": {
+            "lat": 45.4642,
+            "lon": 9.1900
+        },
+        "prodotti": [
+            "P001",
+            "P002"
+        ]
+    },
+    {
+        "id_campo": 2,
+        "id_azienda": 1,
+        "nome_campo": "Campo Sud",
+        "tipo_attività": "agricoltura",
+        "dimensione_ha": 8,
+        "tipo_suolo": "sabbioso",
+        "coordinate": {
+            "lat": 45.4650,
+            "lon": 9.1910
+        },
+        "prodotti": [
+            "P003"
+        ]
+    },
+    {
+        "id_campo": 3,
+        "id_azienda": 2,
+        "nome_campo": "Peschiera Lago",
+        "tipo_attività": "pesca",
+        "dimensione_ha": 2,
+        "tipo_suolo": "acqua",
+        "coordinate": {
+            "lat": 45.4660,
+            "lon": 9.1920
+        },
+        "prodotti": [
+            "F001"
+        ]
+    },
+    {
+        "id_campo": 4,
+        "id_azienda": 3,
+        "nome_campo": "Pascolo Verde",
+        "tipo_attività": "allevamento",
+        "dimensione_ha": 12,
+        "tipo_suolo": "erboso",
+        "coordinate": {
+            "lat": 45.4670,
+            "lon": 9.1930
+        },
+        "prodotti": [
+            "C001"
+        ]
+    },
+    {
+        "id_campo": 5,
+        "id_azienda": 3,
+        "nome_campo": "Pascolo Ovest",
+        "tipo_attività": "allevamento",
+        "dimensione_ha": 7,
+        "tipo_suolo": "erboso",
+        "coordinate": {
+            "lat": 45.4680,
+            "lon": 9.1940
+        },
+        "prodotti": [
+            "C002",
+            "C003"
+        ]
+    },
+    {
+        "id_campo": 6,
+        "id_azienda": 4,
+        "nome_campo": "Miniera Alfa",
+        "tipo_attività": "estrazione",
+        "dimensione_ha": 3,
+        "tipo_suolo": "roccioso",
+        "coordinate": {
+            "lat": 45.4690,
+            "lon": 9.1950
+        },
+        "prodotti": [
+            "M001"
+        ]
+    },
+    {
+        "id_campo": 7,
+        "id_azienda": 5,
+        "nome_campo": "Bosco Est",
+        "tipo_attività": "silvicoltura",
+        "dimensione_ha": 15,
+        "tipo_suolo": "foresta",
+        "coordinate": {
+            "lat": 45.4700,
+            "lon": 9.1960
+        },
+        "prodotti": [
+            "L001",
+            "L002"
+        ]
+    },
+    {
+        "id_campo": 8,
+        "id_azienda": 5,
+        "nome_campo": "Bosco Ovest",
+        "tipo_attività": "silvicoltura",
+        "dimensione_ha": 10,
+        "tipo_suolo": "foresta",
+        "coordinate": {
+            "lat": 45.4710,
+            "lon": 9.1970
+        },
+        "prodotti": [
+            "L003"
+        ]
+    },
+    {
+        "id_campo": 9,
+        "id_azienda": 6,
+        "nome_campo": "Apiario Centrale",
+        "tipo_attività": "apicoltura",
+        "dimensione_ha": 1,
+        "tipo_suolo": "erboso",
+        "coordinate": {
+            "lat": 45.4720,
+            "lon": 9.1980
+        },
+        "prodotti": [
+            "H001"
+        ]
+    },
+    {
+        "id_campo": 10,
+        "id_azienda": 7,
+        "nome_campo": "Orto Fiorito Nord",
+        "tipo_attività": "agricoltura",
+        "dimensione_ha": 4,
+        "tipo_suolo": "argilloso",
+        "coordinate": {
+            "lat": 45.4730,
+            "lon": 9.1990
+        },
+        "prodotti": [
+            "P004"
+        ]
+    },
+    {
+        "id_campo": 11,
+        "id_azienda": 8,
+        "nome_campo": "Laguna Ligure",
+        "tipo_attività": "pesca",
+        "dimensione_ha": 3,
+        "tipo_suolo": "acqua",
+        "coordinate": {
+            "lat": 45.4740,
+            "lon": 9.2000
+        },
+        "prodotti": [
+            "F002",
+            "F003"
+        ]
+    },
+    {
+        "id_campo": 12,
+        "id_azienda": 9,
+        "nome_campo": "Pascolo Bianchi",
+        "tipo_attività": "allevamento",
+        "dimensione_ha": 9,
+        "tipo_suolo": "erboso",
+        "coordinate": {
+            "lat": 45.4750,
+            "lon": 9.2010
+        },
+        "prodotti": [
+            "C004"
+        ]
+    },
+    {
+        "id_campo": 13,
+        "id_azienda": 10,
+        "nome_campo": "Foresta Alpina Est",
+        "tipo_attività": "silvicoltura",
+        "dimensione_ha": 20,
+        "tipo_suolo": "foresta",
+        "coordinate": {
+            "lat": 45.4760,
+            "lon": 9.2020
+        },
+        "prodotti": [
+            "L004"
+        ]
+    },
+    {
+        "id_campo": 14,
+        "id_azienda": 10,
+        "nome_campo": "Foresta Alpina Ovest",
+        "tipo_attività": "silvicoltura",
+        "dimensione_ha": 18,
+        "tipo_suolo": "foresta",
+        "coordinate": {
+            "lat": 45.4770,
+            "lon": 9.2030
+        },
+        "prodotti": [
+            "L005"
+        ]
+    }
+]

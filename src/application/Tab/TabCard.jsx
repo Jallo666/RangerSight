@@ -1,11 +1,22 @@
 import React from "react";
-import { Box, Typography, Paper, useTheme, useMediaQuery } from "@mui/material";
+import { Box, Paper, IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import DashboardCampi from "../../dashboard/DashboardCampi";
+import { useSelector, useDispatch } from "react-redux";
+import { selectNavigation } from "../../store/slices/application/applicationSelectors";
+import { removeNavigationItem } from "../../store/slices/application/applicationSlice";
 
-export default function TabCard({ titles = [], sx }) {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+export default function TabCard() {
+  const navigation = useSelector(selectNavigation);
+  const dispatch = useDispatch();
 
-  const visibleTitles = isMobile ? titles.slice(0, 1) : titles.slice(0, 2);
+  const handleClose = (title) => {
+    dispatch(removeNavigationItem(title));
+  };
+
+  const currentTab = navigation[0];
+
+  if (!currentTab) return null;
 
   return (
     <Box
@@ -14,33 +25,67 @@ export default function TabCard({ titles = [], sx }) {
         display: "flex",
         flexDirection: "row",
         gap: 2,
-        ...sx,
+        overflowX: "visible",
+        minHeight: 0,
       }}
     >
-      {visibleTitles.map((title, index) => (
-        <Paper
-          key={index}
-          elevation={3}
+      <Paper
+        elevation={3}
+        sx={{
+          flex: 1,
+          minWidth: 300,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "stretch",
+          bgcolor: "background.paper",
+          borderRadius: 2,
+          minHeight: 0,
+          position: "relative",
+        }}
+      >
+        <Box
           sx={{
-            flex: 1,
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
             display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            bgcolor: "background.paper",
-            borderRadius: 2,
+            flexDirection: "column",
+            overflow: "hidden",
             p: 2,
           }}
         >
-          <Typography
-            variant="h4"
-            fontWeight={700}
-            color="primary"
-            textAlign="center"
+          <IconButton
+            size="small"
+            onClick={() => handleClose(currentTab)}
+            sx={{
+              position: "absolute",
+              top: 8,
+              right: 8,
+              color: "text.secondary",
+              "&:hover": { color: "error.main", bgcolor: "action.hover" },
+            }}
           >
-            HAI APERTO UNA SCHEDA: {title}
-          </Typography>
-        </Paper>
-      ))}
+            <CloseIcon fontSize="small" />
+          </IconButton>
+
+          <Box sx={{ mb: 2, fontWeight: "bold", fontSize: 18, flexShrink: 0 }}>
+            {currentTab}
+          </Box>
+
+          <Box
+            sx={{
+              flex: 1,
+              minHeight: 0,
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {currentTab === "Campi" ? <DashboardCampi /> : <Box>{currentTab}</Box>}
+          </Box>
+        </Box>
+      </Paper>
     </Box>
   );
 }

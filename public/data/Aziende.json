@@ -1,0 +1,12 @@
+[
+  { "id_azienda": 1, "nome": "Fattoria Verde", "tipo": "agricoltura", "contatto": "info@fattoriaverde.it", "campi": [1, 2] },
+  { "id_azienda": 2, "nome": "Pesca Mare Blu", "tipo": "pesca", "contatto": "contatti@pescamareblu.it", "campi": [3] },
+  { "id_azienda": 3, "nome": "Allevamento Rossi", "tipo": "allevamento", "contatto": "rossi@allevamenti.it", "campi": [4, 5] },
+  { "id_azienda": 4, "nome": "Miniere Italia", "tipo": "estrazione", "contatto": "info@miniereitalia.it", "campi": [6] },
+  { "id_azienda": 5, "nome": "Boschi Nord", "tipo": "silvicoltura", "contatto": "nord@boschi.it", "campi": [7, 8] },
+  { "id_azienda": 6, "nome": "Apicoltura DolceMiele", "tipo": "apicoltura", "contatto": "info@dolcemiele.it", "campi": [9] },
+  { "id_azienda": 7, "nome": "Orto Fiorito", "tipo": "agricoltura", "contatto": "info@ortofiorito.it", "campi": [10] },
+  { "id_azienda": 8, "nome": "Pescheria Ligure", "tipo": "pesca", "contatto": "info@pescherialigure.it", "campi": [11, 12] },
+  { "id_azienda": 9, "nome": "Allevamento Bianchi", "tipo": "allevamento", "contatto": "bianchi@allevamenti.it", "campi": [13] },
+  { "id_azienda": 10, "nome": "Foreste Alpine", "tipo": "silvicoltura", "contatto": "info@forestealpine.it", "campi": [14, 15] }
+]
