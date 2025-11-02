@@ -77,9 +77,6 @@ export default function CampoItem({
                   OK
                 </Box>
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-                <strong>Condizioni:</strong> 🌤 23°C · 💧 60% · ☔ 2 mm
-              </Typography>
               {campo.prodotti?.length > 0 && (
                 <Typography
                   variant="body2"
@@ -89,6 +86,9 @@ export default function CampoItem({
                   Codici prodotto: {campo.prodotti.join(", ")}
                 </Typography>
               )}
+              <Typography variant="body2" color="text.secondary">
+                <strong>Condizioni:</strong> 🌤 23°C · 💧 60% · ☔ 2 mm
+              </Typography>
             </Box>
           }
         />

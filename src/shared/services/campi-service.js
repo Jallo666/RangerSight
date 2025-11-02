@@ -1,7 +1,6 @@
 import BASE_URLS from "./config";
 
 const campiService = {
-  // 🔹 Recupera tutti i campi
   getAll: async () => {
     try {
       const response = await fetch(BASE_URLS.campi);
@@ -16,7 +15,6 @@ const campiService = {
     }
   },
 
-  // 🔹 Filtra i campi per azienda
   getByAzienda: async (idAzienda) => {
     try {
       const allCampi = await campiService.getAll();
@@ -27,10 +25,9 @@ const campiService = {
     }
   },
 
-  // 🔹 Recupera un singolo campo per id
   getById: async (idCampo) => {
     try {
-      const allCampi = await campiService.getAll();
+      const allAziende = await campiService.getAll();
       const campo = allCampi.find((c) => c.id_campo === idCampo);
       if (!campo) {
         throw new Error(`Campo con id ${idCampo} non trovato`);

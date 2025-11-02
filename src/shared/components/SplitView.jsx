@@ -11,6 +11,7 @@ export default function SplitView({
   renderItem,
   renderDetail,
   width = 400,
+  renderFilter,
 }) {
   const [selectedItem, setSelectedItem] = useState(null);
   const deviceType = useSelector(selectDeviceType);
@@ -18,11 +19,11 @@ export default function SplitView({
 
   const groupedItems = groupBy
     ? items.reduce((acc, item) => {
-        const key = groupBy(item);
-        if (!acc[key]) acc[key] = [];
-        acc[key].push(item);
-        return acc;
-      }, {})
+      const key = groupBy(item);
+      if (!acc[key]) acc[key] = [];
+      acc[key].push(item);
+      return acc;
+    }, {})
     : { Tutti: items };
 
   if (isMobile) {
@@ -30,6 +31,18 @@ export default function SplitView({
       <Box sx={{ height: "100vh", overflowY: "auto", p: 2 }}>
         {!selectedItem ? (
           <>
+            <Box
+              sx={{
+                mb: 2,
+                position: "sticky",
+                top: 0,
+                zIndex: 10,
+                bgcolor: "background.paper",
+                py: 1,
+              }}
+            >
+              {renderFilter()}
+            </Box>
             <Typography
               variant="h6"
               sx={{
@@ -89,19 +102,19 @@ export default function SplitView({
           height: "100%",
         }}
       >
-        <Typography
-          variant="h6"
-          sx={{
-            p: 2,
-            borderBottom: 1,
-            borderColor: "divider",
-            fontWeight: "bold",
-          }}
-        >
-          {title}
-        </Typography>
-
         <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
+          <Box
+            sx={{
+              mb: 2,
+              position: "sticky",
+              top: 0,
+              zIndex: 10,
+              bgcolor: "background.paper",
+              py: 1,
+            }}
+          >
+            {renderFilter()}
+          </Box>
           {Object.entries(groupedItems).map(([groupName, groupItems]) => (
             <Box key={groupName}>
               <Box

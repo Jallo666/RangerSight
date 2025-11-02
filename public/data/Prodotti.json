@@ -1,0 +1,110 @@
+[
+  {
+    "codice_prodotto": "P001",
+    "nome": "Mais",
+    "giorni_crescita": 90,
+    "tipo_attività": "agricoltura"
+  },
+  {
+    "codice_prodotto": "P002",
+    "nome": "Grano duro",
+    "giorni_crescita": 120,
+    "tipo_attività": "agricoltura"
+  },
+  {
+    "codice_prodotto": "P003",
+    "nome": "Soia",
+    "giorni_crescita": 110,
+    "tipo_attività": "agricoltura"
+  },
+  {
+    "codice_prodotto": "P004",
+    "nome": "Pomodoro da industria",
+    "giorni_crescita": 95,
+    "tipo_attività": "agricoltura"
+  },
+  {
+    "codice_prodotto": "F001",
+    "nome": "Trote fario",
+    "giorni_crescita": 180,
+    "tipo_attività": "pesca"
+  },
+  {
+    "codice_prodotto": "F002",
+    "nome": "Orate",
+    "giorni_crescita": 210,
+    "tipo_attività": "pesca"
+  },
+  {
+    "codice_prodotto": "F003",
+    "nome": "Spigole",
+    "giorni_crescita": 200,
+    "tipo_attività": "pesca"
+  },
+  {
+    "codice_prodotto": "C001",
+    "nome": "Bovini da latte",
+    "giorni_crescita": 365,
+    "tipo_attività": "allevamento"
+  },
+  {
+    "codice_prodotto": "C002",
+    "nome": "Ovini da lana",
+    "giorni_crescita": 300,
+    "tipo_attività": "allevamento"
+  },
+  {
+    "codice_prodotto": "C003",
+    "nome": "Caprini da latte",
+    "giorni_crescita": 280,
+    "tipo_attività": "allevamento"
+  },
+  {
+    "codice_prodotto": "C004",
+    "nome": "Suini da carne",
+    "giorni_crescita": 240,
+    "tipo_attività": "allevamento"
+  },
+  {
+    "codice_prodotto": "M001",
+    "nome": "Carbone minerale",
+    "giorni_crescita": null,
+    "tipo_attività": "estrazione"
+  },
+  {
+    "codice_prodotto": "L001",
+    "nome": "Legname di pino",
+    "giorni_crescita": 1825,
+    "tipo_attività": "silvicoltura"
+  },
+  {
+    "codice_prodotto": "L002",
+    "nome": "Legname di faggio",
+    "giorni_crescita": 2190,
+    "tipo_attività": "silvicoltura"
+  },
+  {
+    "codice_prodotto": "L003",
+    "nome": "Legname di quercia",
+    "giorni_crescita": 2555,
+    "tipo_attività": "silvicoltura"
+  },
+  {
+    "codice_prodotto": "L004",
+    "nome": "Legname di abete",
+    "giorni_crescita": 2000,
+    "tipo_attività": "silvicoltura"
+  },
+  {
+    "codice_prodotto": "L005",
+    "nome": "Legname di larice",
+    "giorni_crescita": 2100,
+    "tipo_attività": "silvicoltura"
+  },
+  {
+    "codice_prodotto": "H001",
+    "nome": "Miele millefiori",
+    "giorni_crescita": 60,
+    "tipo_attività": "apicoltura"
+  }
+]
