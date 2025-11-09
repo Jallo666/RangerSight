@@ -27,7 +27,7 @@ const campiService = {
 
   getById: async (idCampo) => {
     try {
-      const allAziende = await campiService.getAll();
+      const allCampi = await campiService.getAll();
       const campo = allCampi.find((c) => c.id_campo === idCampo);
       if (!campo) {
         throw new Error(`Campo con id ${idCampo} non trovato`);
@@ -35,6 +35,16 @@ const campiService = {
       return campo;
     } catch (error) {
       console.error("Errore nel fetch del campo:", error);
+      throw error;
+    }
+  },
+
+  getByProdotto: async (codiceProdotto) => {
+    try {
+      const allCampi = await campiService.getAll();
+      return allCampi.filter((campo) => campo.prodotti.includes(codiceProdotto));
+    } catch (error) {
+      console.error(`Errore nel fetch dei campi per prodotto ${codiceProdotto}:`, error);
       throw error;
     }
   },

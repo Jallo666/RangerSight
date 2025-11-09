@@ -34,7 +34,7 @@ export default function CampoMeteo({ coordinate }) {
         setLoading(true);
 
         const endTime = new Date();
-        const startTime = new Date(endTime.getTime() - 7 * 24 * 3600 * 1000); // ultimi 7 giorni
+        const startTime = new Date(endTime.getTime() - 7 * 24 * 3600 * 1000); 
 
         const data = await meteoService.getMeteo(
           coordinate?.lat,

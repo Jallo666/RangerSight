@@ -28,6 +28,8 @@ const aziendeService = {
       throw error;
     }
   }
+
+  
 };
 
 export default aziendeService;

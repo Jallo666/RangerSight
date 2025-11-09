@@ -112,6 +112,11 @@ export default function CampoProdotti({ prodotti = [] }) {
 
         <Typography><strong>Codice:</strong> {prodotto.codice_prodotto}</Typography>
         <Typography><strong>Tipo attività:</strong> {prodotto.tipo_attività}</Typography>
+        {prodotto.temperatura_ottimale?.min != null && prodotto.temperatura_ottimale?.max != null && (
+          <Typography>
+            <strong>Temperatura ottimale:</strong> {prodotto.temperatura_ottimale.min}°C - {prodotto.temperatura_ottimale.max}°C
+          </Typography>
+        )}
         {prodotto.descrizione && (
           <Typography sx={{ mt: 1 }}>
             <strong>Descrizione:</strong> {prodotto.descrizione}
@@ -129,7 +134,7 @@ export default function CampoProdotti({ prodotti = [] }) {
         >
           <InfoCard
             icon={<Grass />}
-            label="Tempo di crescita"
+            label="Giorni di crescita"
             value={prodotto.giorni_crescita}
             bgcolor={theme.palette.success.light}
             color={theme.palette.success.contrastText}

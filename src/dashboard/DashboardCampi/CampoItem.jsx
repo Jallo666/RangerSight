@@ -7,7 +7,7 @@ import {
   Chip,
   Divider,
 } from "@mui/material";
-
+import { TipiAttivitaColori } from "../../shared/model/model";
 export default function CampoItem({
   campo,
   selectedCampo,
@@ -53,8 +53,8 @@ export default function CampoItem({
                 label={campo.tipo_attività}
                 size="small"
                 sx={{
-                  bgcolor: "primary.light",
-                  color: "primary.contrastText",
+                  bgcolor: TipiAttivitaColori[campo.tipo_attività].bgColor || "primary.light",
+                  color: TipiAttivitaColori[campo.tipo_attività].textColor || "primary.contrastText",
                   fontWeight: 500,
                 }}
               />
@@ -83,7 +83,7 @@ export default function CampoItem({
                   color="text.secondary"
                   sx={{ fontStyle: "italic" }}
                 >
-                  Codici prodotto: {campo.prodotti.join(", ")}
+                  Prodotti: {campo.prodotti.length}
                 </Typography>
               )}
               <Typography variant="body2" color="text.secondary">

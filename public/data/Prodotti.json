@@ -3,108 +3,144 @@
     "codice_prodotto": "P001",
     "nome": "Mais",
     "giorni_crescita": 90,
-    "tipo_attività": "agricoltura"
+    "tipo_attività": "agricoltura",
+    "temperatura_ottimale": { "min": 18, "max": 27 },
+    "descrizione": "Il mais è una pianta erbacea versatile, utilizzata per alimentazione umana e animale."
   },
   {
     "codice_prodotto": "P002",
     "nome": "Grano duro",
     "giorni_crescita": 120,
-    "tipo_attività": "agricoltura"
+    "tipo_attività": "agricoltura",
+    "temperatura_ottimale": { "min": 15, "max": 25 },
+    "descrizione": "Base per pasta e prodotti da forno, richiede clima temperato."
   },
   {
     "codice_prodotto": "P003",
     "nome": "Soia",
     "giorni_crescita": 110,
-    "tipo_attività": "agricoltura"
+    "tipo_attività": "agricoltura",
+    "temperatura_ottimale": { "min": 20, "max": 30 },
+    "descrizione": "Leguminosa ricca di proteine, utilizzata per alimenti e oli vegetali."
   },
   {
     "codice_prodotto": "P004",
-    "nome": "Pomodoro da industria",
+    "nome": "Pomodoro",
     "giorni_crescita": 95,
-    "tipo_attività": "agricoltura"
+    "tipo_attività": "agricoltura",
+    "temperatura_ottimale": { "min": 18, "max": 28 },
+    "descrizione": "Pomodoro coltivato per trasformazione in conserve e salse."
   },
   {
     "codice_prodotto": "F001",
-    "nome": "Trote fario",
+    "nome": "Trote",
     "giorni_crescita": 180,
-    "tipo_attività": "pesca"
+    "tipo_attività": "pesca",
+    "temperatura_ottimale": { "min": 10, "max": 18 },
+    "descrizione": "Pesce d'acqua dolce apprezzato fresco."
   },
   {
     "codice_prodotto": "F002",
     "nome": "Orate",
     "giorni_crescita": 210,
-    "tipo_attività": "pesca"
+    "tipo_attività": "pesca",
+    "temperatura_ottimale": { "min": 15, "max": 22 },
+    "descrizione": "Pesce marino pregiato, allevato in acqua salmastra o mare aperto."
   },
   {
     "codice_prodotto": "F003",
     "nome": "Spigole",
     "giorni_crescita": 200,
-    "tipo_attività": "pesca"
+    "tipo_attività": "pesca",
+    "temperatura_ottimale": { "min": 16, "max": 24 },
+    "descrizione": "Pesce predatore dal sapore delicato, allevato in mare aperto o laguna."
   },
   {
     "codice_prodotto": "C001",
-    "nome": "Bovini da latte",
+    "nome": "Latte",
     "giorni_crescita": 365,
-    "tipo_attività": "allevamento"
+    "tipo_attività": "allevamento",
+    "temperatura_ottimale": { "min": 5, "max": 25 },
+    "descrizione": "Bovini selezionati per produzione di latte di alta qualità."
   },
   {
     "codice_prodotto": "C002",
-    "nome": "Ovini da lana",
+    "nome": "Lana",
     "giorni_crescita": 300,
-    "tipo_attività": "allevamento"
+    "tipo_attività": "allevamento",
+    "temperatura_ottimale": { "min": 0, "max": 25 },
+    "descrizione": "Pecore allevate per lana e secondariamente per carne."
   },
   {
     "codice_prodotto": "C003",
-    "nome": "Caprini da latte",
+    "nome": "Latte di capra",
     "giorni_crescita": 280,
-    "tipo_attività": "allevamento"
+    "tipo_attività": "allevamento",
+    "temperatura_ottimale": { "min": 5, "max": 25 },
+    "descrizione": "Capre da latte allevate per formaggi e latticini."
   },
   {
     "codice_prodotto": "C004",
-    "nome": "Suini da carne",
+    "nome": "Carne di maiale",
     "giorni_crescita": 240,
-    "tipo_attività": "allevamento"
+    "tipo_attività": "allevamento",
+    "temperatura_ottimale": { "min": 10, "max": 28 },
+    "descrizione": "Suini allevati per la produzione di carne."
   },
   {
     "codice_prodotto": "M001",
     "nome": "Carbone minerale",
     "giorni_crescita": null,
-    "tipo_attività": "estrazione"
+    "tipo_attività": "estrazione",
+    "temperatura_ottimale": { "min": null, "max": null },
+    "descrizione": "Risorsa naturale estratta dalle miniere."
+  },
+  {
+    "codice_prodotto": "H001",
+    "nome": "Miele",
+    "giorni_crescita": 60,
+    "tipo_attività": "apicoltura",
+    "temperatura_ottimale": { "min": 18, "max": 28 },
+    "descrizione": "Miele prodotto dalle api da diverse fioriture."
   },
   {
     "codice_prodotto": "L001",
     "nome": "Legname di pino",
     "giorni_crescita": 1825,
-    "tipo_attività": "silvicoltura"
+    "tipo_attività": "silvicoltura",
+    "temperatura_ottimale": { "min": 5, "max": 25 },
+    "descrizione": "Legname proveniente da pini, usato in edilizia e falegnameria."
   },
   {
     "codice_prodotto": "L002",
     "nome": "Legname di faggio",
     "giorni_crescita": 2190,
-    "tipo_attività": "silvicoltura"
+    "tipo_attività": "silvicoltura",
+    "temperatura_ottimale": { "min": 5, "max": 25 },
+    "descrizione": "Legname di faggio resistente e durevole, usato per mobili e pavimenti."
   },
   {
     "codice_prodotto": "L003",
     "nome": "Legname di quercia",
     "giorni_crescita": 2555,
-    "tipo_attività": "silvicoltura"
+    "tipo_attività": "silvicoltura",
+    "temperatura_ottimale": { "min": 5, "max": 25 },
+    "descrizione": "Legname pregiato di quercia, ideale per lavori artigianali e botti da vino."
   },
   {
     "codice_prodotto": "L004",
     "nome": "Legname di abete",
     "giorni_crescita": 2000,
-    "tipo_attività": "silvicoltura"
+    "tipo_attività": "silvicoltura",
+    "temperatura_ottimale": { "min": 5, "max": 25 },
+    "descrizione": "Legname leggero e resistente, perfetto per costruzioni e falegnameria."
   },
   {
     "codice_prodotto": "L005",
     "nome": "Legname di larice",
     "giorni_crescita": 2100,
-    "tipo_attività": "silvicoltura"
-  },
-  {
-    "codice_prodotto": "H001",
-    "nome": "Miele millefiori",
-    "giorni_crescita": 60,
-    "tipo_attività": "apicoltura"
+    "tipo_attività": "silvicoltura",
+    "temperatura_ottimale": { "min": 5, "max": 25 },
+    "descrizione": "Legname di larice, noto per durabilità e resistenza alle intemperie."
   }
 ]

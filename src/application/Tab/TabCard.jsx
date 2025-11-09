@@ -2,9 +2,12 @@ import React from "react";
 import { Box, Paper, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import DashboardCampi from "../../dashboard/DashboardCampi/DashboardCampi";
+import DashboardProdotti from "../../dashboard/DashboardProdotti/DashboardProdotti";
 import { useSelector, useDispatch } from "react-redux";
 import { selectNavigation } from "../../store/slices/application/applicationSelectors";
 import { removeNavigationItem } from "../../store/slices/application/applicationSlice";
+import DashboardAttivita from "../../dashboard/DashboardAttività/DashboardAttività";
+import DashboardMeteo from "../../dashboard/DashboardMeteo/DashboardMeteo";
 
 export default function TabCard() {
   const navigation = useSelector(selectNavigation);
@@ -12,6 +15,13 @@ export default function TabCard() {
 
   const handleClose = (title) => {
     dispatch(removeNavigationItem(title));
+  };
+
+  const dashboardComponents = {
+    Campi: <DashboardCampi />,
+    Prodotti: <DashboardProdotti />,
+    Attività: <DashboardAttivita />,
+    Meteo: <DashboardMeteo />,
   };
 
   const currentTab = navigation[0];
@@ -74,6 +84,7 @@ export default function TabCard() {
             {currentTab}
           </Box>
 
+
           <Box
             sx={{
               flex: 1,
@@ -82,7 +93,8 @@ export default function TabCard() {
               flexDirection: "column",
             }}
           >
-            {currentTab === "Campi" ? <DashboardCampi /> : <Box>{currentTab}</Box>}
+            {dashboardComponents[currentTab] || <Box>{currentTab}</Box>}
+
           </Box>
         </Box>
       </Paper>

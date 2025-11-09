@@ -1,6 +1,6 @@
 import React from "react";
-import { Box, Typography, Divider } from "@mui/material";
-
+import { Box, Typography, Divider, Chip } from "@mui/material";
+import { TipiAttivitaColori } from "../../shared/model/model";
 export default function CampoInfo({ campo }) {
   if (!campo) {
     return (
@@ -17,9 +17,21 @@ export default function CampoInfo({ campo }) {
       </Typography>
       <Divider sx={{ mb: 1 }} />
 
-      <Typography>
-        <strong>Tipo attività:</strong> {campo.tipo_attività}
-      </Typography>
+<Typography component="div">
+  <strong>Tipo attività:</strong>{" "}
+  <Chip
+    label={campo.tipo_attività}
+    size="small"
+    sx={{
+      bgcolor:
+        TipiAttivitaColori[campo.tipo_attività]?.bgColor || "primary.light",
+      color:
+        TipiAttivitaColori[campo.tipo_attività]?.textColor ||
+        "primary.contrastText",
+      fontWeight: 500,
+    }}
+  />
+</Typography>
 
       <Typography>
         <strong>Dimensione:</strong> {campo.dimensione_ha} ha

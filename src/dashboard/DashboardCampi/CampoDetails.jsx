@@ -28,8 +28,20 @@ export default function CampoDetails({ campo }) {
           flexDirection: "column",
         }}
       >
-        <Mappa coordinate={campo.coordinate} nome={campo.nome_campo} />
-      </Paper>
+        <Mappa
+          points={[
+            {
+              lat: campo.coordinate?.lat,
+              lon: campo.coordinate?.lon,
+              info: [
+                { label: "Campo", text: campo.nome_campo || campo.nome },
+                campo.dimensione_ha
+                  ? { label: "Superficie", text: `${campo.dimensione_ha} ha` }
+                  : null,
+              ].filter(Boolean), // rimuove i null
+            },
+          ]}
+        />      </Paper>
       <Paper
         sx={{
           borderRadius: 3,
@@ -48,7 +60,7 @@ export default function CampoDetails({ campo }) {
           flexDirection: "column",
         }}
       >
-        <CampoMeteo coordinate={campo.coordinate}/>
+        <CampoMeteo coordinate={campo.coordinate} />
       </Paper>
     </Grid>
   );

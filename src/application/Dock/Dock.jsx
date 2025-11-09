@@ -9,7 +9,9 @@ import DockSettings from "./DockSettings";
 import DockAccount from "./DockAccount";
 import { useSelector } from "react-redux";
 import { selectDockPosition } from "../../store/slices/application/applicationSelectors";
-
+import StorefrontIcon from '@mui/icons-material/Storefront';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import ThunderstormIcon from '@mui/icons-material/Thunderstorm';
 export default function Dock() {
   const currentDockPosition = useSelector(selectDockPosition);
 
@@ -34,8 +36,9 @@ export default function Dock() {
     >
       <Box display="flex" gap={1}>
         <DockIcon navigation={true} icon={GridView} label="Campi" />
-        <DockIcon navigation={true} icon={MapIcon} label="Mappa" />
-        <DockIcon navigation={true} icon={DashboardIcon} label="Dashboard" />
+        <DockIcon navigation={true} icon={StorefrontIcon} label="Prodotti" />
+        <DockIcon navigation={true} icon={AssignmentIcon} label="Attività" />
+        <DockIcon navigation={true} icon={ThunderstormIcon} label="Meteo" />
       </Box>
 
       <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
