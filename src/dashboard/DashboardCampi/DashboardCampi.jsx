@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import campiService from "../shared/services/campi-service";
+import campiService from "../../shared/services/campi-service";
 import CampoItem from "./CampoItem";
 import CampoDetails from "./CampoDetails";
-import SplitView from "../shared/components/SplitView";
-import aziendeService from "../shared/services/aziende-service";
+import SplitView from "../../shared/components/SplitView";
+import aziendeService from "../../shared/services/aziende-service";
 import CampoFilterDynamic from "./CampoFilterMock";
 export default function DashboardCampi() {
   const [campi, setCampi] = useState([]);

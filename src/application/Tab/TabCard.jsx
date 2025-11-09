@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Paper, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import DashboardCampi from "../../dashboard/DashboardCampi";
+import DashboardCampi from "../../dashboard/DashboardCampi/DashboardCampi";
 import { useSelector, useDispatch } from "react-redux";
 import { selectNavigation } from "../../store/slices/application/applicationSelectors";
 import { removeNavigationItem } from "../../store/slices/application/applicationSlice";
