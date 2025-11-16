@@ -21,57 +21,12 @@ function getSeasonalTemps(month, baseMinTemp, baseMaxTemp) {
   return [minTemp, maxTemp];
 }
 
-/**
- * Genera meteo realistico per un giorno intero con stagioni e pioggia/notte
- */
-export function generateDailyWeather(oggi, campoId, baseMinTemp = 5, baseMaxTemp = 25, minUmid = 40, maxUmid = 95) {
-  const rng = seedrandom(`${oggi}-${campoId}`);
-  const piccoOra = 14;
-  const dati = [];
-  const month = new Date(oggi).getMonth();
-  const [minTemp, maxTemp] = getSeasonalTemps(month, baseMinTemp, baseMaxTemp);
-
-  for (let ora = 0; ora < 24; ora++) {
-    // ===== Temperatura =====
-    const angle = ((ora - piccoOra + 12) / 24) * 2 * Math.PI;
-    const trendTemp = (Math.sin(angle) * (maxTemp - minTemp) / 2) + ((maxTemp + minTemp) / 2);
-    const fluctTemp = rng() * 2 - 1;
-    const temperatura = Math.min(maxTemp, Math.max(minTemp, trendTemp + fluctTemp));
-
-    // ===== Umidità =====
-    let baseUmid = maxUmid - ((temperatura - minTemp) / (maxTemp - minTemp)) * (maxUmid - minUmid);
-    // Fluttuazioni casuali ±2.5%
-    baseUmid += rng() * 5 - 2.5;
-    const umidita = Math.min(maxUmid, Math.max(minUmid, baseUmid));
-
-    // ===== Precipitazioni =====
-    let probPioggia = 0;
-    // solo tra le 6 e le 20
-    if (ora >= 6 && ora <= 20) {
-      probPioggia = (umidita - 60) / 40;
-      probPioggia = Math.min(1, Math.max(0, probPioggia));
-    }
-    const precipitazioni = rng() < probPioggia ? parseFloat((rng() * 5).toFixed(1)) : 0;
-
-    // ===== Timestamp =====
-    const timestamp = new Date(`${oggi}T${String(ora).padStart(2, '0')}:00:00Z`).toISOString();
-
-    dati.push({
-      data: timestamp,                 // invece di timestamp
-      temperatura: parseFloat(temp.toFixed(1)),
-      umidità: parseFloat(umidita.toFixed(1)), // con accento
-      precipitazioni
-    });
-  }
-
-  return dati;
-}
-
 
 /**
  * Genera meteo pseudo-realistico per un intervallo di ore con stagioni
  */
-export function generateRangedWeather(oggi, campoId, baseMinTemp = 5, baseMaxTemp = 25, minUmid = 40, maxUmid = 95, hours = 24) {
+export function generateRangedWeather(oggi, campo, baseMinTemp = 5, baseMaxTemp = 25, minUmid = 40, maxUmid = 95, hours = 24) {
+  const campoId = campo.id_campo
   const rng = seedrandom(`${oggi}-${campoId}`);
   const piccoOra = 14;
   const dati = [];

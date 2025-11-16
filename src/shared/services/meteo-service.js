@@ -1,7 +1,7 @@
 import { generateRangedWeather } from "../../simulatore/meteo-simulator";
 
 const meteoService = {
-  getMeteo: async (campoId, startTime, endTime, aggregazione = 3600) => {
+  getMeteo: async (campo, startTime, endTime, aggregazione = 3600) => {
     try {
       const start = new Date(startTime);
       const end = new Date(endTime);
@@ -12,7 +12,7 @@ const meteoService = {
       while (current <= end) {
         const day = current.toISOString().slice(0, 10);
         const hour = current.getUTCHours();
-        const weather = generateRangedWeather(day, campoId, 5, 25, 40, 95, 24);
+        const weather = generateRangedWeather(day, campo, 5, 25, 40, 95, 24);
 
         const entry = weather[hour];
 

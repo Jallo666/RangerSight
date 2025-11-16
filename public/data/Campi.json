@@ -6,7 +6,8 @@
     "tipo_attività": "agricoltura",
     "dimensione_ha": 5,
     "tipo_suolo": "argilloso",
-    "coordinate": { "lat": 44.8941, "lon": 8.6333 }, 
+    "coordinate": { "lat": 44.8941, "lon": 8.6333 },
+    "altitudine": 300,
     "prodotti": ["P001","P002"]
   },
   {
@@ -17,6 +18,7 @@
     "dimensione_ha": 8,
     "tipo_suolo": "sabbioso",
     "coordinate": { "lat": 45.6167, "lon": 9.0833 },
+    "altitudine": 250,
     "prodotti": ["P003","P001"]
   },
   {
@@ -27,6 +29,7 @@
     "dimensione_ha": 6,
     "tipo_suolo": "limoso",
     "coordinate": { "lat": 45.2500, "lon": 12.3167 },
+    "altitudine": 20,
     "prodotti": ["P002","P004"]
   },
   {
@@ -37,6 +40,7 @@
     "dimensione_ha": 12,
     "tipo_suolo": "erboso",
     "coordinate": { "lat": 43.7150, "lon": 11.1000 },
+    "altitudine": 150,
     "prodotti": ["C001","C003"]
   },
   {
@@ -47,6 +51,7 @@
     "dimensione_ha": 7,
     "tipo_suolo": "erboso",
     "coordinate": { "lat": 43.1333, "lon": 12.3873 },
+    "altitudine": 300,
     "prodotti": ["C002","C004"]
   },
   {
@@ -57,6 +62,7 @@
     "dimensione_ha": 3,
     "tipo_suolo": "roccioso",
     "coordinate": { "lat": 39.3000, "lon": 9.2000 },
+    "altitudine": 50,
     "prodotti": ["M001"]
   },
   {
@@ -67,6 +73,7 @@
     "dimensione_ha": 15,
     "tipo_suolo": "foresta",
     "coordinate": { "lat": 46.0667, "lon": 11.1167 },
+    "altitudine": 900,
     "prodotti": ["L001","L002"]
   },
   {
@@ -77,6 +84,7 @@
     "dimensione_ha": 10,
     "tipo_suolo": "foresta",
     "coordinate": { "lat": 44.4150, "lon": 9.2333 },
+    "altitudine": 350,
     "prodotti": ["L003","L004"]
   },
   {
@@ -87,6 +95,7 @@
     "dimensione_ha": 1,
     "tipo_suolo": "erboso",
     "coordinate": { "lat": 44.7000, "lon": 11.2000 },
+    "altitudine": 80,
     "prodotti": ["H001"]
   },
   {
@@ -97,46 +106,51 @@
     "dimensione_ha": 4,
     "tipo_suolo": "argilloso",
     "coordinate": { "lat": 40.8500, "lon": 14.3000 },
+    "altitudine": 120,
     "prodotti": ["P004","P001"]
   },
   {
     "id_campo": 11,
-    "id_azienda": 11,
+    "id_azienda": 2,
     "nome_campo": "Laguna Veneto",
     "tipo_attività": "pesca",
     "dimensione_ha": 3,
     "tipo_suolo": "acqua",
     "coordinate": { "lat": 45.4400, "lon": 12.3150 },
+    "altitudine": 0,
     "prodotti": ["F002","F003"]
   },
   {
     "id_campo": 12,
-    "id_azienda": 12,
+    "id_azienda": 4,
     "nome_campo": "Pascolo Puglia",
     "tipo_attività": "allevamento",
     "dimensione_ha": 9,
     "tipo_suolo": "erboso",
     "coordinate": { "lat": 41.1300, "lon": 16.8650 },
+    "altitudine": 200,
     "prodotti": ["C004","C003"]
   },
   {
     "id_campo": 13,
-    "id_azienda": 13,
+    "id_azienda": 5,
     "nome_campo": "Foresta Lombardia",
     "tipo_attività": "silvicoltura",
     "dimensione_ha": 20,
     "tipo_suolo": "foresta",
     "coordinate": { "lat": 45.6000, "lon": 9.2000 },
+    "altitudine": 400,
     "prodotti": ["L004","L005"]
   },
   {
     "id_campo": 14,
-    "id_azienda": 14,
+    "id_azienda": 6,
     "nome_campo": "Foresta Trentino",
     "tipo_attività": "silvicoltura",
     "dimensione_ha": 18,
     "tipo_suolo": "foresta",
     "coordinate": { "lat": 46.0700, "lon": 11.1200 },
+    "altitudine": 850,
     "prodotti": ["L005","L003"]
   }
 ]

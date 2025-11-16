@@ -6,6 +6,8 @@ import L from "leaflet";
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
+import { Marker, Popup } from "react-leaflet";
+import { Typography, Button } from "@mui/material";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -66,44 +68,39 @@ export default function Mappa({ points = [], loading = false }) {
     </Box>
   );
 }
-
 function MarkersLayer({ points }) {
-  const map = useMap();
+  return points.map((p, idx) => (
+    <Marker
+      key={idx}
+      position={[p.lat, p.lon]}
+      icon={p.icon || new L.Icon.Default()}
+    >
+      <Popup>
+        <Box sx={{ display: "flex", flexDirection: "column", minWidth: 100 }}>
+          {p.info?.map((i, j) => (
+            <Box key={j} sx={{ display: "flex", gap: 2 }}>
+              <strong>{i.label}:</strong>
+              <span>{i.text}</span>
+            </Box>
+          ))}
 
-  useEffect(() => {
-    const group = L.layerGroup().addTo(map);
-
-    points.forEach((p) => {
-      let icon;
-
-      if (p.icon && p.icon instanceof L.DivIcon) {
-        icon = p.icon;
-      } else if (p.icon === "rain") {
-        icon = new L.Icon({
-          iconUrl: "https://cdn-icons-png.flaticon.com/512/414/414974.png",
-          iconSize: [40, 40],
-          iconAnchor: [20, 20],
-        });
-      } else {
-        icon = new L.Icon.Default();
-      }
-
-      const marker = L.marker([p.lat, p.lon], { icon });
-
-      const popupContent = p.info
-        ?.map((i) => `<strong>${i.label}:</strong> ${i.text}`)
-        .join("<br/>");
-
-      marker.bindPopup(popupContent || "Nessuna informazione");
-
-      marker.addTo(group);
-    });
-
-    return () => {
-      group.clearLayers();
-      map.removeLayer(group);
-    };
-  }, [points, map]);
-
-  return null;
+          {p.actions?.length > 0 && (
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 0.5 }}>
+              {p.actions.map((a, k) => (
+                <Button
+                  key={k}
+                  size="small"
+                  variant="outlined"
+                  sx={{ minWidth: "auto", padding: "2px 4px", fontSize: "0.7rem" }}
+                  onClick={a.callback}
+                >
+                  {a.label}
+                </Button>
+              ))}
+            </Box>
+          )}
+        </Box>
+      </Popup>
+    </Marker>
+  ));
 }

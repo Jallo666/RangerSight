@@ -16,10 +16,19 @@ export default function LineChartMeteo({ dati }) {
 
   const [datoAttivo, setDatoAttivo] = useState("temperatura");
 
-  const datiConOre = dati.map(d => ({
+const giorniUnici = Array.from(new Set(dati.map(d => new Date(d.data).toDateString())));
+
+const datiConOre = dati.map(d => {
+  const dt = new Date(d.data);
+  const giorno = dt.getDate();
+  const mese = dt.getMonth() + 1;
+  const ora = dt.getHours().toString().padStart(2, "0") + ":00";
+
+  return {
     ...d,
-    ora: new Date(d.data).getHours().toString().padStart(2, "0") + ":00",
-  }));
+    ora: giorniUnici.length > 1 ? `${giorno}/${mese} ${ora}` : ora,
+  };
+});
 
   return (
     <Box sx={{ height: "100%", display: "flex", flexDirection: "column", gap: 2 }}>

@@ -51,6 +51,7 @@ export class Campo {
     dimensione_ha,
     tipo_suolo,
     coordinate,
+    altitudine,
     prodotti = [],
   }) {
     this.id_campo = id_campo;
@@ -60,6 +61,7 @@ export class Campo {
     this.dimensione_ha = dimensione_ha;
     this.tipo_suolo = tipo_suolo;
     this.coordinate = coordinate;
+    this.altitudine = altitudine;
     this.prodotti = prodotti;
   }
 }

@@ -17,21 +17,21 @@ export default function CampoInfo({ campo }) {
       </Typography>
       <Divider sx={{ mb: 1 }} />
 
-<Typography component="div">
-  <strong>Tipo attività:</strong>{" "}
-  <Chip
-    label={campo.tipo_attività}
-    size="small"
-    sx={{
-      bgcolor:
-        TipiAttivitaColori[campo.tipo_attività]?.bgColor || "primary.light",
-      color:
-        TipiAttivitaColori[campo.tipo_attività]?.textColor ||
-        "primary.contrastText",
-      fontWeight: 500,
-    }}
-  />
-</Typography>
+      <Typography component="div">
+        <strong>Tipo attività:</strong>{" "}
+        <Chip
+          label={campo.tipo_attività}
+          size="small"
+          sx={{
+            bgcolor:
+              TipiAttivitaColori[campo.tipo_attività]?.bgColor || "primary.light",
+            color:
+              TipiAttivitaColori[campo.tipo_attività]?.textColor ||
+              "primary.contrastText",
+            fontWeight: 500,
+          }}
+        />
+      </Typography>
 
       <Typography>
         <strong>Dimensione:</strong> {campo.dimensione_ha} ha
@@ -44,6 +44,10 @@ export default function CampoInfo({ campo }) {
       <Typography>
         <strong>Coordinate:</strong>{" "}
         {campo.coordinate.lat}, {campo.coordinate.lon}
+      </Typography>
+
+      <Typography>
+        <strong>Altitudine:</strong> {campo.altitudine} m
       </Typography>
 
       {campo.prodotti?.length > 0 && (
