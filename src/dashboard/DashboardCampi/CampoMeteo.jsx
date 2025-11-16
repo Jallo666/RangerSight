@@ -5,17 +5,9 @@ import {
   Divider,
   CircularProgress,
   useTheme,
+  Button
 } from "@mui/material";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  Legend,
-  CartesianGrid,
-} from "recharts";
+import LineChartMeteo from "../../shared/components/LineChartMeteo";
 import InfoCard from "../../shared/components/InfoCard";
 import meteoService from "../../shared/services/meteo-service";
 
@@ -23,37 +15,40 @@ import DeviceThermostatIcon from "@mui/icons-material/DeviceThermostat";
 import WaterDropIcon from "@mui/icons-material/WaterDrop";
 import GrainIcon from "@mui/icons-material/Grain";
 
-export default function CampoMeteo({ coordinate }) {
+export default function CampoMeteo({ coordinate, campoId }) {
   const theme = useTheme();
   const [dati, setDati] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const oggi = new Date().toLocaleDateString("it-IT", { weekday: "short" });
+  const [giornoSelezionato, setGiornoSelezionato] = useState(oggi);
   useEffect(() => {
     const fetchMeteo = async () => {
       try {
         setLoading(true);
 
         const endTime = new Date();
-        const startTime = new Date(endTime.getTime() - 7 * 24 * 3600 * 1000); 
+        const startTime = new Date(endTime.getTime() - 7 * 24 * 3600 * 1000);
 
         const data = await meteoService.getMeteo(
-          coordinate?.lat,
-          coordinate?.lon,
+          campoId,
           startTime,
           endTime,
-          3600 
+          3600
         );
 
+const storico = data.map(d => ({
+  data: d.data,
+  giorno: new Date(d.data).toLocaleDateString("it-IT", { weekday: "short" }),
+  temperatura: d.temperatura,
+  umidità: d.umidità,
+  precipitazioni: d.precipitazioni,
+}));
+
         setDati({
-          storico: data.map((d) => ({
-            giorno: new Date(d.data).toLocaleDateString("it-IT", {
-              weekday: "short",
-            }),
-            temperatura: d.temperatura,
-            umidità: d.umidità,
-          })),
+          storico,
           attuale: data[data.length - 1],
         });
+
       } catch (error) {
         console.error("Errore nel caricamento dati meteo:", error);
       } finally {
@@ -88,6 +83,7 @@ export default function CampoMeteo({ coordinate }) {
   }
 
   const { storico, attuale } = dati;
+  const giorni = [...new Set(storico.map(d => d.giorno))];
 
   return (
     <Box
@@ -105,75 +101,40 @@ export default function CampoMeteo({ coordinate }) {
       </Typography>
       <Divider sx={{ mb: 2 }} />
 
-      {/* 🔹 Grafico doppio asse */}
       <Box sx={{ flex: 1, minHeight: 220 }}>
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart
-            data={storico}
-            margin={{ top: 10, right: 20, left: 0, bottom: 0 }}
+        <LineChartMeteo
+          dati={
+            giornoSelezionato
+              ? storico.filter(d => d.giorno === giornoSelezionato)
+              : storico
+          }
+        />
+      </Box>
+
+
+      {/* Bottoni selezione giorno */}
+      <Box sx={{ mt: 2, display: "flex", justifyContent: "center", flexWrap: "wrap", gap: 1 }}>
+        {giorni.map((g) => (
+          <Button
+            key={g}
+            variant={giornoSelezionato === g ? "contained" : "outlined"}
+            color={giornoSelezionato === g ? "primary" : "inherit"}
+            onClick={() => setGiornoSelezionato(g)}
           >
-            <CartesianGrid strokeDasharray="3 3" stroke={theme.palette.divider} />
-            <XAxis dataKey="giorno" stroke={theme.palette.text.secondary} />
-            <YAxis
-              yAxisId="left"
-              stroke={theme.palette.text.secondary}
-              label={{
-                value: "°C",
-                angle: -90,
-                position: "insideLeft",
-                style: { fill: theme.palette.text.secondary },
-              }}
-            />
-            <YAxis
-              yAxisId="right"
-              orientation="right"
-              stroke={theme.palette.text.secondary}
-              label={{
-                value: "%",
-                angle: 90,
-                position: "insideRight",
-                style: { fill: theme.palette.text.secondary },
-              }}
-            />
-            <Tooltip
-              contentStyle={{
-                backgroundColor: theme.palette.background.paper,
-                borderRadius: 8,
-                border: `1px solid ${theme.palette.divider}`,
-              }}
-            />
-            <Legend />
-            <Line
-              yAxisId="left"
-              type="monotone"
-              dataKey="temperatura"
-              stroke={theme.palette.warning.main}
-              strokeWidth={2}
-              name="Temperatura (°C)"
-              dot={false}
-            />
-            <Line
-              yAxisId="right"
-              type="monotone"
-              dataKey="umidità"
-              stroke={theme.palette.info.main}
-              strokeWidth={2}
-              name="Umidità (%)"
-              dot={false}
-            />
-          </LineChart>
-        </ResponsiveContainer>
+            {g}
+          </Button>
+        ))}
       </Box>
 
       <Box
         sx={{
           mt: 3,
           display: "flex",
-          flexDirection: "row", 
+          flexDirection: "row",
           justifyContent: "space-evenly",
           alignItems: "center",
-          gap: 3,                        
-          flexWrap: "nowrap",            
+          gap: 3,
+          flexWrap: "nowrap",
           width: "100%",
         }}
       >
@@ -199,7 +160,6 @@ export default function CampoMeteo({ coordinate }) {
           color={theme.palette.success.contrastText}
         />
       </Box>
-
     </Box>
   );
 }

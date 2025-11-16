@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { setThemeAction } from './applicationActions';
+import { setInitializedAction, setThemeAction } from './applicationActions';
 import {
   setDockPositionAction, setEmptyNavigationAction, addNavigationItemAction, removeNavigationItemAction, setDeviceTypeAction, setNavigationItemAction
 } from './applicationActions';
@@ -11,6 +11,7 @@ const initialState = {
   },
   navigation: ["Campi"],
   deviceType: "desktop",
+  initialized: false,
 };
 
 const applicationSlice = createSlice({
@@ -24,8 +25,9 @@ const applicationSlice = createSlice({
     setNavigationItem: setNavigationItemAction,
     removeNavigationItem: removeNavigationItemAction,
     setDeviceType: setDeviceTypeAction,
+    setInitialized: setInitializedAction
   },
 });
 
-export const { setTheme, setDockPosition, cancelNavigation, addNavigationItem, removeNavigationItem, setDeviceType, setNavigationItem } = applicationSlice.actions;
+export const { setTheme, setDockPosition, cancelNavigation, addNavigationItem, removeNavigationItem, setDeviceType, setNavigationItem, setInitialized } = applicationSlice.actions;
 export default applicationSlice.reducer;

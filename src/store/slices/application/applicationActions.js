@@ -36,3 +36,7 @@ export const removeNavigationItemAction = (state, action) => {
 export const setDeviceTypeAction = (state, action) => {
   state.deviceType = action.payload;
 };
+
+export const setInitializedAction = (state, action) => {
+  state.initialized = action.payload;
+};

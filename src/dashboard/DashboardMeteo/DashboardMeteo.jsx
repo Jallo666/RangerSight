@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
-  Paper,
   Box,
   Typography,
-  FormControlLabel,
-  Switch,
   ToggleButton,
   ToggleButtonGroup,
 } from "@mui/material";
@@ -13,7 +10,6 @@ import campiService from "../../shared/services/campi-service";
 import meteoService from "../../shared/services/meteo-service";
 import L from "leaflet";
 
-// Icone mini per la colonna
 const iconeMini = {
   temperatura: "🌡️",
   precipitazioni: "🌧️",
@@ -23,9 +19,7 @@ const iconeMini = {
 export default function DashboardMeteo() {
   const [points, setPoints] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showRain, setShowRain] = useState(true);
   const [datoSelezionato, setDatoSelezionato] = useState("temperatura");
-
   useEffect(() => {
     const fetchMeteo = async () => {
       try {
@@ -41,17 +35,13 @@ export default function DashboardMeteo() {
             if (!lat || !lon) return null;
 
             const meteo = await meteoService.getMeteo(
-              lat,
-              lon,
+              campo.id_campo,
               oneHourAgo.toISOString(),
               now.toISOString(),
               3600
             );
 
             const ultimo = meteo[meteo.length - 1];
-            const isPioggia = ultimo.precipitazioni > 0.1;
-
-            if (!showRain && isPioggia) return null;
 
             return {
               lat,
@@ -83,23 +73,6 @@ export default function DashboardMeteo() {
     fetchMeteo();
   }, []);
 
-  // Calcolo valori medi
-  const media = points.length
-    ? {
-        temperatura: (
-          points.reduce((sum, p) => sum + p.meta.temperatura, 0) / points.length
-        ).toFixed(1),
-        precipitazioni: (
-          points.reduce((sum, p) => sum + p.meta.precipitazioni, 0) /
-          points.length
-        ).toFixed(1),
-        umidità: (
-          points.reduce((sum, p) => sum + p.meta.umidità, 0) / points.length
-        ).toFixed(1),
-      }
-    : { temperatura: "-", precipitazioni: "-", umidità: "-" };
-
-  // Funzione per creare divIcon con numero
   const creaIconaNumero = (valore) =>
     new L.DivIcon({
       className: "custom-div-icon",
@@ -117,10 +90,8 @@ export default function DashboardMeteo() {
     });
 
   return (
-    <Paper
+    <Box
       sx={{
-        borderRadius: 3,
-        boxShadow: 3,
         display: "flex",
         height: "80vh",
         overflow: "hidden",
@@ -129,7 +100,7 @@ export default function DashboardMeteo() {
       {/* Colonna sinistra */}
       <Box
         sx={{
-          width: 250,
+          width: 500,
           borderRight: "1px solid #ddd",
           p: 2,
           display: "flex",
@@ -140,77 +111,44 @@ export default function DashboardMeteo() {
           Impostazioni Meteo
         </Typography>
 
-        <FormControlLabel
-          control={
-            <Switch
-              checked={showRain}
-              onChange={(e) => setShowRain(e.target.checked)}
-            />
-          }
-          label="Mostra pioggia"
-        />
-
-        <Box sx={{ mt: 4 }}>
-          <Typography variant="subtitle1" sx={{ mb: 1 }}>
-            Dati medi campi
-          </Typography>
-
-          <ToggleButtonGroup
-            value={datoSelezionato}
-            exclusive
-            onChange={(e, newValue) => {
-              if (newValue) setDatoSelezionato(newValue);
-            }}
-            orientation="vertical"
-            fullWidth
-            sx={{ mb: 2 }}
-          >
-            <ToggleButton value="temperatura">
-              {iconeMini.temperatura} Temperatura
-            </ToggleButton>
-            <ToggleButton value="precipitazioni">
-              {iconeMini.precipitazioni} Precipitazioni
-            </ToggleButton>
-            <ToggleButton value="umidità">
-              {iconeMini.umidità} Umidità
-            </ToggleButton>
-          </ToggleButtonGroup>
-
-          <Box sx={{ mt: 2 }}>
-            <Typography>
-              Media:{" "}
-              {datoSelezionato === "temperatura"
-                ? `${media.temperatura}°C`
-                : datoSelezionato === "precipitazioni"
-                ? `${media.precipitazioni} mm`
-                : `${media.umidità}%`}
-            </Typography>
-          </Box>
-        </Box>
+        <ToggleButtonGroup
+          value={datoSelezionato}
+          exclusive
+          onChange={(e, newValue) => {
+            if (newValue) setDatoSelezionato(newValue);
+          }}
+          orientation="vertical"
+          fullWidth
+          sx={{ mb: 2 }}
+        >
+          <ToggleButton value="temperatura">
+            {iconeMini.temperatura} Temperatura
+          </ToggleButton>
+          <ToggleButton value="precipitazioni">
+            {iconeMini.precipitazioni} Precipitazioni
+          </ToggleButton>
+          <ToggleButton value="umidità">
+            {iconeMini.umidità} Umidità
+          </ToggleButton>
+        </ToggleButtonGroup>
       </Box>
 
       {/* Mappa */}
       <Box sx={{ flex: 1, position: "relative" }}>
         <Mappa
-  points={points.map((p) => {
-    if (datoSelezionato === "precipitazioni") {
-      return {
-        ...p,
-        icon:
-          p.meta.precipitazioni > 0.1
-            ? "rain"  // goccia
-            : "sun",  // sole se non piove
-      };
-    } else if (datoSelezionato === "temperatura") {
-      return { ...p, icon: creaIconaNumero(p.meta.temperatura.toFixed(1)) };
-    } else if (datoSelezionato === "umidità") {
-      return { ...p, icon: creaIconaNumero(p.meta.umidità.toFixed(1)) };
-    }
-    return p;
-  })}
-  loading={loading}
-/>
+          points={points.map((p) => ({
+            ...p,
+            icon: creaIconaNumero(
+              datoSelezionato === "temperatura"
+                ? p.meta.temperatura.toFixed(1)
+                : datoSelezionato === "precipitazioni"
+                  ? p.meta.precipitazioni.toFixed(1)
+                  : p.meta.umidità.toFixed(1)
+            ),
+          }))}
+          loading={loading}
+        />
       </Box>
-    </Paper>
+    </Box>
   );
 }

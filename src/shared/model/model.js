@@ -117,3 +117,11 @@ export class Straordinaria extends AttivitaCampo {
   }
 }
 
+export class MeteoCampo {
+  constructor({ data, temperatura, umidità, precipitazioni }) {
+    this.data = data;                    
+    this.temperatura = temperatura;      
+    this.umidità = umidità;              
+    this.precipitazioni = precipitazioni;
+  }
+}

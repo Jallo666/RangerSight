@@ -66,11 +66,9 @@ function MarkersLayer({ points }) {
     points.forEach((p) => {
       let icon;
 
-      // Se p.icon è un divIcon già pronto (numeri), lo usiamo
       if (p.icon && p.icon instanceof L.DivIcon) {
         icon = p.icon;
       } else if (p.icon === "rain") {
-        // Icona goccia
         icon = new L.Icon({
           iconUrl: "https://cdn-icons-png.flaticon.com/512/414/414974.png",
           iconSize: [40, 40],

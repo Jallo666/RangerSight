@@ -60,7 +60,7 @@ export default function CampoDetails({ campo }) {
           flexDirection: "column",
         }}
       >
-        <CampoMeteo coordinate={campo.coordinate} />
+        <CampoMeteo campoId={campo.id_campo} coordinate={campo.coordinate} />
       </Paper>
     </Grid>
   );
