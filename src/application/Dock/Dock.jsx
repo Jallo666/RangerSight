@@ -1,7 +1,5 @@
 import React from "react";
 import { Box, Paper } from "@mui/material";
-import MapIcon from "@mui/icons-material/Map";
-import DashboardIcon from "@mui/icons-material/Dashboard";
 import GridView from "@mui/icons-material/GridView";
 import logo from "../../assets/logo.svg";
 import DockIcon from "./DockIcon";

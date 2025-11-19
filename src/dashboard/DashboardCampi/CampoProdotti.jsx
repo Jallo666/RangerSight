@@ -8,15 +8,18 @@ import {
   CircularProgress,
   useTheme,
 } from "@mui/material";
-import { Grass, Timer, Cloud, Settings } from "@mui/icons-material";
+import { Grass, Timer, Settings } from "@mui/icons-material";
 
 import prodottiService from "../../shared/services/prodotti-service";
+import raccoltoService from "../../shared/services/raccolto-service";
 import InfoCard from "../../shared/components/InfoCard";
-export default function CampoProdotti({ prodotti = [] }) {
+
+export default function CampoProdotti({ prodotti = [], campo }) {
   const theme = useTheme();
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [prodottiDettagli, setProdottiDettagli] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [ultimoRaccolto, setUltimoRaccolto] = useState(null);
 
   useEffect(() => {
     setLoading(true);
@@ -29,16 +32,31 @@ export default function CampoProdotti({ prodotti = [] }) {
           .map((codice) => allProdotti.find((p) => p.codice_prodotto === codice))
           .filter(Boolean);
         setProdottiDettagli(prodottiAssociati);
-      } catch (error) {
-        console.error("Errore nel caricamento dei prodotti associati:", error);
+
+        if (campo && prodottiAssociati.length > 0) {
+const oggi = new Date();
+const startRange = new Date();
+startRange.setDate(oggi.getDate() - 7);
+
+const raccolti = await raccoltoService.getByProdottoRanged(
+  prodottiAssociati[0],
+  campo,
+  startRange.toISOString().split("T")[0],
+  oggi.toISOString().split("T")[0]
+);
+          const latest = raccolti
+  .filter(r => r.data_fine) 
+  .sort((a, b) => new Date(b.data_fine).getTime() - new Date(a.data_fine).getTime())[0];
+          setUltimoRaccolto(latest);
+        }
       } finally {
         setLoading(false);
       }
     };
 
-    if (prodotti?.length > 0) fetchProdotti();
+    if (prodotti?.length > 0 && campo) fetchProdotti();
     else setLoading(false);
-  }, [prodotti]);
+  }, [prodotti, campo]);
 
   if (loading) {
     return (
@@ -57,26 +75,9 @@ export default function CampoProdotti({ prodotti = [] }) {
   }
 
   const prodotto = prodottiDettagli[selectedIndex];
-
-  const realtimeData = {
-    tempoCrescita: "72 giorni",
-    ultimoRaccolto: "12 Set 2025",
-    stato: "In crescita",
-    influenzaMeteo: "Moderata",
-  };
-
-  const getInfluenzaColor = (livello) => {
-    switch (livello.toLowerCase()) {
-      case "bassa":
-        return theme.palette.success.light;
-      case "moderata":
-        return theme.palette.warning.light;
-      case "alta":
-        return theme.palette.error.light;
-      default:
-        return theme.palette.grey[300];
-    }
-  };
+  const effPercent = ultimoRaccolto
+    ? Math.round((ultimoRaccolto.quantità / raccoltoService.valoreAtteso(prodotto, campo)) * 100)
+    : 0;
 
   return (
     <Box sx={{ display: "flex", height: "100%" }}>
@@ -143,7 +144,7 @@ export default function CampoProdotti({ prodotti = [] }) {
           <InfoCard
             icon={<Timer />}
             label="Ultimo raccolto"
-            value={realtimeData.ultimoRaccolto}
+            value={ultimoRaccolto?.data_fine || "N/A"}
             bgcolor={theme.palette.info.light}
             color={theme.palette.info.contrastText}
           />
@@ -151,17 +152,17 @@ export default function CampoProdotti({ prodotti = [] }) {
           <InfoCard
             icon={<Settings />}
             label="Stato"
-            value={realtimeData.stato}
+            value="In crescita"
             bgcolor={theme.palette.warning.light}
             color={theme.palette.warning.contrastText}
           />
 
           <InfoCard
-            icon={<Cloud />}
-            label="Influenza meteo"
-            value={realtimeData.influenzaMeteo}
-            bgcolor={getInfluenzaColor(realtimeData.influenzaMeteo)}
-            color={theme.palette.getContrastText(getInfluenzaColor(realtimeData.influenzaMeteo))}
+            icon={<Settings />}
+            label="Efficienza"
+            value={`${effPercent}%`}
+            bgcolor={theme.palette.success.light}
+            color={theme.palette.success.contrastText}
           />
         </Box>
       </Box>

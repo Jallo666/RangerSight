@@ -2,15 +2,7 @@ import React from "react";
 import { Grid, Paper, Box, Typography, List, ListItem, ListItemText, Divider } from "@mui/material";
 import ProdottoInfoCard from "./ProdottoInfoCard";
 import ProdottoRaccoltiCard from "./ProdottoRaccoltiCard";
-
-function ProdottoCrescita() {
-    return (
-        <Box sx={{ p: 2 }}>
-            <Typography variant="h6">Crescita</Typography>
-            <Typography>Qui puoi aggiungere info su giorni di crescita o stato raccolto</Typography>
-        </Box>
-    );
-}
+import ProdottoCrescita from "./ProdottoCrescita";
 
 
 export default function ProdottoDetails({ prodotto }) {
@@ -30,7 +22,7 @@ export default function ProdottoDetails({ prodotto }) {
             </Paper>
 
             <Paper sx={{ borderRadius: 3, boxShadow: 3, display: "flex", flexDirection: "column" }}>
-                <ProdottoCrescita />
+                <ProdottoCrescita prodotto={prodotto} />
             </Paper>
 
             <Paper

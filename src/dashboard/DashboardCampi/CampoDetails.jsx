@@ -50,7 +50,7 @@ export default function CampoDetails({ campo }) {
           flexDirection: "column",
         }}
       >
-        <CampoProdotti prodotti={campo.prodotti} />
+        <CampoProdotti prodotti={campo.prodotti} campo={campo} />
       </Paper>
       <Paper
         sx={{
